@@ -12,7 +12,12 @@ module.exports = {
     get(req, res, next) {
         var particularDocName = req.body.particular_doctor
         Patient.find({particular_doctor: particularDocName}, function(err, founded){
+            if(founded){
             res.send(founded)
+            }
+            else{ 
+                res.send({ success: false })
+            }
         }).catch(next);
     }
 

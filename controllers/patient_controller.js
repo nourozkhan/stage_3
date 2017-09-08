@@ -10,9 +10,10 @@ module.exports = {
     },
 
     get(req, res, next) {
-        Patient.find({})
-            .then(patients => res.send(patients))
-            .catch(next);
+        var particularDocName = req.body.particular_doctor
+        Patient.find({particular_doctor: particularDocName}, function(err, founded){
+            res.send(founded)
+        }).catch(next);
     }
 
 }
